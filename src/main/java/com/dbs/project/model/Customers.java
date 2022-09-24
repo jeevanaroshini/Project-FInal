@@ -42,8 +42,7 @@ public class Customers {
 	public void setOverDraft(String overDraft) {
 		this.overDraft = overDraft;
 	}
-	public Customers(String username, String customerID, String custName, double balance, String overDraft,
-			String role) {
+	public Customers(String username, String custName, double balance, String overDraft) {
 		super();
 		this.username = username;
 		this.custName = custName;
