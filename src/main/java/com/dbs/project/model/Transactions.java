@@ -17,23 +17,25 @@ public class Transactions {
 	boolean status;
 	
 	public Transactions() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Transactions(String cusId, String cusName, long amount, String recId, String recName,
-			String timestamp,boolean status) {
+	public Transactions(String cusId, long amount, String cusName, String recId, String recName, boolean status,
+			String timestamp) {
 		super();
-
 		this.cusId = cusId;
-		this.cusName = cusName;
 		this.amount = amount;
+		this.cusName = cusName;
 		this.recId = recId;
 		this.recName = recName;
+		this.status = status;
 		this.timestamp = timestamp;
-		this.status =status;
 	}
 
-	
+
+
+
 
 	public boolean isStatus() {
 		return status;

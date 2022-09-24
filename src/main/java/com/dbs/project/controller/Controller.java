@@ -18,27 +18,11 @@ import com.dbs.project.service.LoginService;
 @CrossOrigin(value="*")
 public class Controller {
 	
-	/*
-	@Autowired
-	CustomerService customerService;
-	
-	@GetMapping("/all")
-	public String display(){
-		return customerService.run().toString();
-	}
-	*/
+
 	@GetMapping("/test")
 	public String display1(){
 		return "Working!!!";
-	}/*
-	@RequestMapping("/home")
-	public String home() {
-		return "Welcome to home page";
 	}
-	@RequestMapping("/user")
-	public String user() {
-		return "Welcome to user page";
-	}*/
 	@RequestMapping("/employee")
 	public String admin() {
 		return "Welcome to employee page";

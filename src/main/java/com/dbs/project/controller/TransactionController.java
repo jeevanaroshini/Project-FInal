@@ -4,7 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,15 +32,17 @@ public class TransactionController {
 //        
 //    }
 	
-@GetMapping("/saveRecord")
-@ResponseBody
-public String savingRecord(@RequestParam long amount,@RequestParam String cusId,@RequestParam String cusName,@RequestParam String recId,@RequestParam String recName, @RequestParam boolean status ) {
+@GetMapping("/receiver")
+
+public String savingRecord(@RequestParam String cusId, @RequestParam long amount,@RequestParam String cusName,@RequestParam String recId,@RequestParam String recName,@RequestParam boolean status) {
+	 
+	
 	LocalDate currentDate = LocalDate.now();
 	LocalTime currentTime = LocalTime.now();
-	String timestamp = currentDate + "  " + currentTime;
+	String timestamp1= currentDate + "  " + currentTime;
 	
 	
-	ts.addRecord(new Transactions(cusName,cusId,amount,recId,recName,timestamp,status));
+	ts.addRecord(new Transactions(cusId,amount,cusName,recId,recName,status,timestamp1));
      return "Success";
 }
 
