@@ -45,5 +45,8 @@ public String savingRecord(@RequestParam String cusId, @RequestParam long amount
 	ts.addRecord(new Transactions(cusId,amount,cusName,recId,recName,status,timestamp1));
      return "Success";
 }
-
+//@GetMapping("/setbalance")
+//public long setBalance(){
+//	
+//}
 }
