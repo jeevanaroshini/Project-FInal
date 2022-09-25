@@ -2,6 +2,7 @@ package com.dbs.project.controller;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,7 +20,7 @@ import com.dbs.project.repo.CustomerRepo;
 import com.dbs.project.repo.TransactionRepo;
 import com.dbs.project.service.TransactionService;
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(value="*")
 public class TransactionController {
 
 	@Autowired
@@ -29,15 +30,11 @@ public class TransactionController {
 	TransactionService ts;
 
 
-	//	@RequestMapping("/add")
-	//    public String addNewBook(){
-	//        return "BookForm.jsp";
-	//        
-	//    }
+	
 
 	@GetMapping("/receiver")
 
-	public String savingRecord(@RequestParam String cusId, @RequestParam long amount,@RequestParam String cusName,@RequestParam String recId,@RequestParam String recName,@RequestParam boolean status) {
+	public String savingRecord(@RequestParam("cusId") String cusId, @RequestParam("amount") long amount,@RequestParam("cusName") String cusName,@RequestParam("recId") String recId,@RequestParam("recName") String recName,@RequestParam("status") boolean status) {
 
 
 		LocalDate currentDate = LocalDate.now();
@@ -54,10 +51,10 @@ public class TransactionController {
 	
 	
 
-	@GetMapping("/updateBalance")
+	@RequestMapping("/updateBalance")
 
 
-	public String updateBalance(@RequestParam String cust,@RequestParam long amount,@RequestParam String rec) {
+	public String updateBalance(@RequestParam("cust") String cust,@RequestParam("amount") long amount,@RequestParam("rec") String rec) {
 		//new Customers(uname,custname,bal,overdraft);
 //		,@RequestParam String custname,@RequestParam double bal,
 //		@RequestParam String overdraft,
@@ -72,5 +69,10 @@ public class TransactionController {
 		cr.save(c);
 		cr.save(c1);
 		return "success";
+	}
+	
+	@RequestMapping ("/log")
+	public List<Transactions> fetchAll() {
+	return tr.findAll();
 	}
 }
