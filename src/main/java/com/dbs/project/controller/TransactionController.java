@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +19,7 @@ import com.dbs.project.repo.CustomerRepo;
 import com.dbs.project.repo.TransactionRepo;
 import com.dbs.project.service.TransactionService;
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class TransactionController {
 
 	@Autowired
@@ -51,20 +52,25 @@ public class TransactionController {
 	CustomerRepo cr;
 
 	
-	Customers c=new Customers();
+	
 
 	@GetMapping("/updateBalance")
 
 
-	public String updateBalance(@RequestParam String uname,@RequestParam String custname,@RequestParam double bal,
-			@RequestParam String overdraft,@RequestParam long amount) {
+	public String updateBalance(@RequestParam String cust,@RequestParam long amount,@RequestParam String rec) {
 		//new Customers(uname,custname,bal,overdraft);
-		double newBal=bal-amount;
-		c.setUsername(uname);
-		c.setCustName(custname);
-		c.setOverDraft(overdraft);
-		c.setBalance(newBal);
+//		,@RequestParam String custname,@RequestParam double bal,
+//		@RequestParam String overdraft,
+		
+		Customers c=cr.findByUsername(cust);
+		Customers c1=cr.findByUsername(rec);
+		double custBal=c.getBalance()-amount;
+		double recBal=c1.getBalance()+amount;
+		
+		c.setBalance(custBal);
+		c1.setBalance(recBal);
 		cr.save(c);
+		cr.save(c1);
 		return "success";
 	}
 }
