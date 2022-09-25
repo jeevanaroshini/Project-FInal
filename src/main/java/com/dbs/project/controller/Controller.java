@@ -20,18 +20,7 @@ import com.dbs.project.service.LoginService;
 @RestController
 @CrossOrigin(value="*")
 public class Controller {
-	
-
-	@GetMapping("/test")
-	public String display1(){
-		return "Working!!!";
-	}
-	@RequestMapping("/employee")
-	public String admin() {
-		return "Welcome to employee page";
-	}
-	
-	
+		
 	@Autowired 
 	LoginService ls;
 	@RequestMapping ("/login")

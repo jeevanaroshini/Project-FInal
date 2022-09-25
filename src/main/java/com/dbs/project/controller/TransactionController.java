@@ -19,7 +19,7 @@ import com.dbs.project.repo.CustomerRepo;
 import com.dbs.project.repo.TransactionRepo;
 import com.dbs.project.service.TransactionService;
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(value="*")
 public class TransactionController {
 
 	@Autowired
@@ -27,13 +27,6 @@ public class TransactionController {
 
 	@Autowired
 	TransactionService ts;
-
-
-	//	@RequestMapping("/add")
-	//    public String addNewBook(){
-	//        return "BookForm.jsp";
-	//        
-	//    }
 
 	@GetMapping("/receiver")
 
@@ -71,6 +64,6 @@ public class TransactionController {
 		c1.setBalance(recBal);
 		cr.save(c);
 		cr.save(c1);
-		return "success";
+		return "balance updated";
 	}
 }
