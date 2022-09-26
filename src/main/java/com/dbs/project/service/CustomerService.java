@@ -1,6 +1,7 @@
 package com.dbs.project.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,9 @@ public class CustomerService {
 	TransactionRepo tr;
 	public List<Transactions> custHistory(String username) {
 		// TODO Auto-generated method stub
-		return tr.findByCusId(username);
+		List<Transactions> sorted=tr.findByCusId(username);
+		Collections.reverse(sorted);
+		return sorted;
 	}
 	
 	
