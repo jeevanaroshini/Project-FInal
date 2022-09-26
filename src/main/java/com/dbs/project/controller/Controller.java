@@ -38,7 +38,10 @@ public class Controller {
 	public List<Customers> sendDetails(@RequestParam( "username" )String username) {
 	return cs.senderDetails(username);
 	}
-	
+	@RequestMapping ("/customerHistory")
+	public List<Transactions> custHistory(@RequestParam( "username" )String username) {
+	return cs.custHistory(username);
+	}
 	
 	@Autowired
 	BlacklistService bs;
