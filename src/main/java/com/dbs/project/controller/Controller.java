@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dbs.project.model.Blacklist;
 import com.dbs.project.model.Customers;
+import com.dbs.project.model.Transactions;
 import com.dbs.project.repo.BlackListRepo;
+import com.dbs.project.repo.TransactionRepo;
 import com.dbs.project.service.BlacklistService;
 import com.dbs.project.service.CustomerService;
 //import com.dbs.project.service.CustomerService;
 import com.dbs.project.service.LoginService;
+import com.dbs.project.service.TransactionService;
 
 @RestController
 @CrossOrigin(value="*")
@@ -45,6 +48,13 @@ public class Controller {
 		String result=bs.checkMafia(username);
 		
 		return result;
+	}
+	@Autowired
+	TransactionService ts;
+	@RequestMapping("/log")
+	public List<Transactions> fetchAll(){
+		return ts.getTransactions();
+		
 	}
 	
 	
